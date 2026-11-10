@@ -4,8 +4,10 @@ module CU( input logic [31:0] ALUResult , input logic [6:0] Op , input logic [2:
 logic Branch;
 logic [1:0] ALUOp;
 
-Main_Decoder MD( Op , RegWrite , ALUSrc, MemWrite, ResultSrc , Branch , ImmSrc , ALUOp );
-ALU_Decoder  AD( Op[5] , funct7_5 , ALUOp , funct3 , ALU_Control );
+Main_Decoder MD (.Op(Op) , .RegWrite(RegWrite) , .ALUSrc(ALUSrc) , .MemWrite(MemWrite) , .ResultSrc(ResultSrc) , .Branch(Branch) 
+, .ImmSrc(ImmSrc) , .ALUOp(ALUOp) );
+
+ALU_Decoder AD(.Op_5(Op[5]) , .funct7_5(funct7_5) , .ALUOp(ALUOp) , .funct3(funct3) , .ALU_Control(ALU_Control) );
 
 always_comb begin
 
