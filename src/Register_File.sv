@@ -1,3 +1,11 @@
+module Reg_File(input logic [4:0] A1, A2, A3, 
+input logic [31:0] WD3, 
+input logic WE3, clk,
+input logic [6:0] Op,
+input logic [2:0] funct3,
+output logic [31:0] RD1, RD2);
+
+
 /*  A1 and A2 are the registers we want to read from
    A3 is the register we want to write from
     WD3 is the data we want to write to A3
