@@ -1,7 +1,7 @@
 /*  A1 and A2 are the registers we want to read from
    A3 is the register we want to write from
     WD3 is the data we want to write to A3
-        WE3 is write enable and decides if we write to A3 on the posedge of the clk
+        WE3 is write enable and decides if we write to A3 on the negedge of the clk
             RD1 and RD2 are the data found at A1 and A2 respectivley    */
 
 
@@ -11,7 +11,11 @@
             assign RD1 = (A1 == 5'd0) ?  32'd0 : Registers[A1];
             assign RD2 = (A2 == 5'd0) ?  32'd0 : Registers[A2];
 
-            always_ff @ ( posedge clk ) begin
+
+            /*For the pipelined design, writes occur on the falling edge of the clock. This is so 
+          writes can occur in the first half of the cycle and the result can be read in the second half of the cycle
+            */
+            always_ff @ ( negedge clk ) begin
 
                 if((A3 && WE3) != 5'd0) begin
                 
